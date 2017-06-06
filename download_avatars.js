@@ -36,9 +36,12 @@ function downloadImageByURL(url, fileName) {
 getRepoContributors(owner, repo, function(err, contributors) {
   if (err) {
     console.log("errors:", err);
-  } else {
-    for(var i of contributors) {
-      downloadImageByURL(i.avatar_url, i.login + ".jpg");
-    }
   }
+  if(owner === true || repo === true){
+      for(var i of contributors) {
+          downloadImageByURL(i.avatar_url, i.login + ".jpg");
+      }
+    } else {
+      console.log("You must provide a Owner and Repo");
+    }
 });
