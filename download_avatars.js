@@ -19,9 +19,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
     if(err) {
       cb(err);
     } else {
-      cb(null, body);
+      var info = JSON.parse(body)
+      cb(null, info)
     }
-  })
+  });
 }
 
 
@@ -29,7 +30,9 @@ getRepoContributors("jquery", "jquery", function(err, contributors) {
   if (err) {
     console.log("errors:", err);
   } else {
-    console.log("Contributors", contributors);
-  }
+    for(i in contributors) {
+        console.log(contributors[i].avatar_url);
+      }
+    }
 });
 
